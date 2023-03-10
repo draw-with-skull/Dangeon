@@ -65,6 +65,7 @@ namespace DangeonMaster.GameComponents
                 hitbox.Y = legsHitbox.Y - 25;
                 attakHitbox.X = hitbox.X + (15 * direction);
                 attakHitbox.Y = hitbox.Y;
+
             }
         }
         #endregion
