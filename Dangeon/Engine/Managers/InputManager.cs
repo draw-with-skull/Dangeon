@@ -24,6 +24,7 @@ namespace Dangeon.Engine.Managers
             kb = Keyboard.GetState();
             ms = Mouse.GetState();
             state = GameActions.IDLE;
+            direction = Vector2.Zero;
             //movement
             if (kb.IsKeyDown(Keys.W)) { state = GameActions.RUN; direction.Y = -1; }
             if (kb.IsKeyDown(Keys.A)) { state = GameActions.RUN; direction.X = -1; }
