@@ -44,10 +44,6 @@ namespace DangeonMaster.GameComponents
             if (!isContinuous){currentAction = input.GetState();}
 
             if (direction != input.GetDirection().X && input.GetDirection().X != 0) direction = (int)input.GetDirection().X;
-
-            
-
-            
         }
         private void UpdatePosition(ref List<Rectangle> collisions)
         {
@@ -69,7 +65,6 @@ namespace DangeonMaster.GameComponents
                 hitbox.Y = legsHitbox.Y - 25;
                 attakHitbox.X = hitbox.X + (15 * direction);
                 attakHitbox.Y = hitbox.Y;
-
             }
         }
         #endregion
@@ -77,7 +72,7 @@ namespace DangeonMaster.GameComponents
 
         public void Draw()
         {
-            animation.Draw();  
+            animation.Draw();
         }
         public Vector2 GetPosition()
         {
