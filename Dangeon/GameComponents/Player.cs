@@ -27,15 +27,10 @@ namespace DangeonMaster.GameComponents
         private GameActions currentAction;
         private readonly GameActions[] attackActions = { GameActions.ATTACK,GameActions.HEAVY_ATTACK };
 
-        private Color color;
-
         public Player(int x,int y)
         {
             position = new(x, y);
             Init();
-            
-
-
         }
         #region Update
         public void Update(ref List<Rectangle> collisions)
@@ -82,13 +77,7 @@ namespace DangeonMaster.GameComponents
 
         public void Draw()
         {
-            //RectangleDebug.Draw(position, new(48, 48), Color.Blue);
-            //RectangleDebug.Draw(legsHitbox, Color.Red);
-            //RectangleDebug.Draw(hitbox, Color.Pink);
-            //RectangleDebug.Draw(attakHitbox, color);
-            //RectangleDebug.Draw(new List<Rectangle> { legsHitbox, hitbox, attakHitbox }, Color.Peru);
-            animation.Draw();
-            
+            animation.Draw();  
         }
         public Vector2 GetPosition()
         {
