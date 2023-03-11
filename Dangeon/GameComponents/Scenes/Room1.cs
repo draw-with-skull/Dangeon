@@ -1,5 +1,6 @@
 ﻿using Dangeon.Engine.Debug;
 using Dangeon.Engine.Managers;
+using Dangeon.GameComponents.Entitis;
 using DangeonMaster.Engine;
 using DangeonMaster.Engine.Components;
 using DangeonMaster.Engine.Enums;
@@ -23,6 +24,7 @@ namespace DangeonMaster.GameComponents.Scenes
         private List<Rectangle> doors;
         private List<Rectangle> walls;
         private Player player;
+        private Skeleton skeleton;
         private Matrix transformation;
         Texture2D t = new Texture2D(Globals.GraphicsDevice, 1, 1);
         
@@ -38,6 +40,7 @@ namespace DangeonMaster.GameComponents.Scenes
             Globals.SpriteBatch.Begin(SpriteSortMode.BackToFront, null, SamplerState.PointClamp, null, null, null, transformMatrix: transformation);
             Globals.SpriteBatch.Draw(background, background.Bounds, Color.White);
             player.Draw();
+            skeleton.Draw();
             //RectangleDebug.Draw(walls, Color.Green);
             //RectangleDebug.Draw(doors, Color.Pink);
             Globals.SpriteBatch.End();
@@ -45,19 +48,24 @@ namespace DangeonMaster.GameComponents.Scenes
         public override void Update()
         {
             player.Update(ref walls);
+            skeleton.UpdatePosition(ref walls);
+            skeleton.Update();
             int dx = (int)(Globals.WindowSize.X / 2 / Globals.scale - player.GetPosition().X);
             int dy = (int)(Globals.WindowSize.Y / 2 / Globals.scale - player.GetPosition().Y);
             if (dx > 0) dx = 0;
             if (dy > 0) dy = 0;
-            if (dx < -background.Bounds.Width / 2) {dx = (int)-background.Bounds.Width / 2; }
-            if (dy < -background.Bounds.Height / 2) { dy = (int)-background.Bounds.Height / 2; }
+            if (dx < -background.Bounds.Width / 2) {dx = -background.Bounds.Width / 2; }
+            if (dy < -background.Bounds.Height / 2) { dy = -background.Bounds.Height / 2; }
             transformation = Matrix.CreateTranslation(dx, dy, 0);
         }
+
 
         public override void Init()
         {
             background = Globals.Content.Load<Texture2D>("Rooms/Room1");
             player = new Player(200,200);
+            skeleton = new Skeleton(100, 200);
+            skeleton.SetDirection(new(30, -2));
             doors = new()
             {
                 new(336, 64, 80, 64),
