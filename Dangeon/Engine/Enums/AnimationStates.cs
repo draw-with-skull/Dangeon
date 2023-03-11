@@ -15,6 +15,7 @@ namespace DangeonMaster.Engine.Enums
         DEATH,
         HURT,
         RUN,
+        WALK,
         ENTER,
     }
     
